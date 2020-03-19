@@ -7,7 +7,7 @@ def get_data(app_key, page_size,num_pages,elastic):
 	client = Socrata("data.cityofnewyork.us", app_key)
 	results = []
 
-	rows = client.get("nc67-uf89", select="COUNT(*)")
+	rows = int(client.get("nc67-uf89", select="COUNT(*)")[0]['COUNT'])
 
 	if not num_pages:
 		num_pages = (rows // page_size) + 1
